@@ -144,6 +144,15 @@
   .trail .go:hover{color:var(--snow)}
   .trail.is-opt{border-style:dashed;border-color:rgba(94,115,85,.4)}
 
+  /* ---------- SHOT LIST ---------- */
+  .shotlist{margin-top:18px;background:var(--granite-2);border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:4px;padding:20px 22px}
+  .shotlist h3{font-size:20px;text-transform:uppercase;letter-spacing:.05em;color:var(--snow);margin-bottom:3px}
+  .shotlist .cap{font-size:13px;color:var(--paper-dim);font-style:italic;margin-bottom:14px}
+  .shotlist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+  .shotlist li{position:relative;padding:9px 0 9px 20px;font-size:14.5px;color:var(--paper);border-top:1px solid var(--line)}
+  .shotlist li::before{content:"›";position:absolute;left:0;top:9px;color:var(--rust-bright);font-family:var(--display);font-weight:700}
+  .shotlist li b{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:12.5px;color:var(--river);display:block;margin-bottom:1px}
+
   /* ---------- ECHO ---------- */
   .echo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .echo-card{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:22px}
@@ -280,6 +289,7 @@
     section{padding:48px 0}
     .wx-days{grid-template-columns:1fr;gap:10px}
     #map{height:340px}
+    .shotlist ul{grid-template-columns:1fr}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -302,7 +312,7 @@
       <h1>JT <span class="amp">/</span> Yosemite</h1>
       <div class="hero-dates">Thursday, June 25 – Saturday, June 27, 2026</div>
       <div class="crew">Jeremy <span class="dot">·</span> David <span class="dot">·</span> JT</div>
-      <p class="thesis">Three days up Highway 120 with two tents, a half day on the <em>water</em>, and five trails worth the drive. Tick your own boxes below. Meet you at the trailhead.</p>
+      <p class="thesis">Three days up Highway 120 with two tents, a half day on the <em>water</em>, and the trails worth the drive. Three of us in one car, JT on the camera. Tick your own boxes below.</p>
       <div class="sleeps">
         <div class="sleep">
           <div class="n">Night of the 25th</div>
@@ -451,7 +461,7 @@
     <div class="sec-head reveal">
       <div>
         <div class="eyebrow">Boots on the ground</div>
-        <h2>Five trails</h2>
+        <h2>The trails</h2>
       </div>
       <p class="lead">Mapped to the days, not just ranked. Conditions current for late June: waterfalls still running hard, Glacier Point Road open for the season.</p>
     </div>
@@ -485,19 +495,6 @@
 
       <article class="trail reveal">
         <div class="tnum">03</div>
-        <div class="when">Day 2 or 3 · Valley floor</div>
-        <h3>Lower Yosemite Fall + Cook's Meadow</h3>
-        <p class="pay">A one-mile paved loop to the tallest falls in North America, plus the meadow with the postcard Half Dome view. Low effort, big payoff.</p>
-        <div class="stats">
-          <div class="stat"><div class="k">Distance</div><div class="v">~2 mi</div></div>
-          <div class="stat"><div class="k">Gain</div><div class="v">Minimal</div></div>
-          <div class="stat"><div class="k">Effort</div><div class="v">Easy</div></div>
-        </div>
-        <a class="go" href="https://www.nps.gov/places/lower-yosemite-fall-trail.htm" target="_blank" rel="noopener">Trail info ›</a>
-      </article>
-
-      <article class="trail reveal">
-        <div class="tnum">04</div>
         <div class="when">Day 3 · From Curry</div>
         <h3>Mirror Lake</h3>
         <p class="pay">Gentle and flat to still water that mirrors Half Dome. Late June still holds the reflection. The right speed for the last morning.</p>
@@ -510,7 +507,7 @@
       </article>
 
       <article class="trail reveal is-opt">
-        <div class="tnum">05</div>
+        <div class="tnum">04</div>
         <div class="when">Day 3 · Optional · Glacier Point Rd</div>
         <h3>Sentinel Dome + Taft Point</h3>
         <p class="pay">A loop to a 360-degree granite summit and the cliff-edge fissures, both on one trail. The big-view detour if the group has the energy and the clock.</p>
@@ -528,6 +525,20 @@
         <p class="pay" style="margin-bottom:0">Upper Yosemite Falls climbs roughly 3,000 feet for a top-of-the-Valley view. Strenuous, all-morning, only if the legs are asking for it.</p>
         <a class="go" href="https://www.alltrails.com/trail/us/california/upper-yosemite-falls-trail" target="_blank" rel="noopener">Open in AllTrails ›</a>
       </article>
+    </div>
+
+    <div class="shotlist reveal">
+      <h3>Shot list for JT</h3>
+      <div class="cap">JT runs the camera. The light worth chasing, by spot.</div>
+      <ul>
+        <li><b>Tunnel View · sunset</b>The whole Valley in one frame, El Capitan to Bridalveil.</li>
+        <li><b>Sentinel Bridge · dusk</b>Half Dome mirrored in the Merced.</li>
+        <li><b>Cook's Meadow · golden hour</b>Half Dome over the meadow from the Valley floor.</li>
+        <li><b>Carlon Falls · evening</b>Soft light on the cascade, almost nobody around.</li>
+        <li><b>Mist Trail · mid-morning</b>Rainbows in the Vernal Fall spray.</li>
+        <li><b>Sentinel Dome · sunset</b>360 of granite, then a headlamp walk down.</li>
+        <li><b>Mirror Lake · early</b>Still water and a clean reflection before the wind.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -734,6 +745,7 @@ var GROUPS=[
     {id:'headlamp',t:'Headlamp',s:'each, for dark tents and early starts'},
     {id:'power',t:'Power bank + cables',s:'tents have no outlets'},
     {id:'daypack',t:'Daypack for the Valley'},
+    {id:'camera',t:'Camera gear, spare batteries + cards',s:'JT on the lens'},
     {id:'bottle',t:'Reusable water bottle'}
   ]},
   {h:'Food & water',note:'Meals are on property plus the Echo lunch. David: avocado and mango out.',items:[
@@ -934,7 +946,6 @@ buildList();renderProgress();
     {n:'Curry Village',s:'Night of the 26th',lat:37.7341,lon:-119.5760,type:'lodge'},
     {n:'Carlon Falls trailhead',s:'Day 1 · easy river walk',lat:37.8130,lon:-119.8640,type:'trail'},
     {n:'Mist Trail · Happy Isles',s:'Day 2 · Vernal Fall',lat:37.7327,lon:-119.5585,type:'trail'},
-    {n:'Lower Yosemite Fall',s:'Valley · short loop',lat:37.7470,lon:-119.5965,type:'trail'},
     {n:'Mirror Lake trailhead',s:'Day 3 · easy reflections',lat:37.7438,lon:-119.5520,type:'trail'},
     {n:'Sentinel Dome + Taft Point',s:'Day 3 · optional big view',lat:37.7130,lon:-119.5880,type:'trail'}
   ];
