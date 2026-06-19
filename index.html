@@ -216,6 +216,22 @@
     border-radius:20px;padding:6px 14px;cursor:pointer;transition:all .15s ease}
   button.reset:hover{color:var(--snow);border-color:var(--rust-bright);background:rgba(181,96,30,.1)}
 
+  .reset.on{color:var(--snow);border-color:var(--rust-bright);background:rgba(181,96,30,.14)}
+  .prow.editing{grid-template-columns:1fr 30px 132px}
+  .prow .del{width:26px;height:26px;border-radius:5px;border:1px solid var(--line-strong);background:transparent;
+    color:var(--paper-dim);font-size:18px;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;align-self:center}
+  .prow .del:hover{border-color:#A24B2B;color:#D98B6B;background:rgba(160,75,43,.14)}
+  .cflag{display:inline-block;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+    font-size:9px;color:var(--river);border:1px solid rgba(107,160,160,.4);border-radius:10px;padding:1px 6px;margin-right:6px;vertical-align:middle}
+  .addrow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;padding:11px 14px;border-top:1px dashed var(--line-strong);background:rgba(181,96,30,.06)}
+  .addrow input{background:var(--granite);border:1px solid var(--line-strong);border-radius:4px;color:var(--paper);
+    font-family:var(--body);font-size:14.5px;padding:8px 11px;min-width:0}
+  .addrow input::placeholder{color:var(--paper-dim)}
+  .addrow input:focus{outline:2px solid var(--rust-bright);outline-offset:1px;border-color:var(--rust-bright)}
+  .addrow .add-go{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12px;
+    color:var(--snow);background:var(--rust);border:none;border-radius:4px;padding:8px 18px;cursor:pointer;white-space:nowrap}
+  .addrow .add-go:hover{background:var(--rust-bright)}
+
   /* ---------- NOTES ---------- */
   .notes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .note{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
@@ -290,6 +306,9 @@
     .wx-days{grid-template-columns:1fr;gap:10px}
     #map{height:340px}
     .shotlist ul{grid-template-columns:1fr}
+    .prow.editing{grid-template-columns:1fr 26px 118px}
+    .addrow{grid-template-columns:1fr}
+    .addrow .add-go{width:100%}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -624,7 +643,7 @@
         <div class="eyebrow">Everyone packs their own</div>
         <h2>The checklist</h2>
       </div>
-      <p class="lead">Three columns, three packers. Tick your own box. It saves on this device, so each phone keeps its own progress.</p>
+      <p class="lead">Three columns, three packers. Tick your own box, and hit Edit list to add anything that's missing. It saves on this device, so each phone keeps its own.</p>
     </div>
 
     <div class="crew-progress reveal" id="progress"></div>
@@ -636,6 +655,8 @@
     <div id="packlist"></div>
 
     <div class="pack-tools">
+      <button class="reset edit" id="editBtn">Edit list</button>
+      <button class="reset" id="restoreBtn" style="display:none">Restore default list</button>
       <span class="saved" id="savedNote">Saved on this device.</span>
       <button class="reset" data-who="J">Reset Jeremy</button>
       <button class="reset" data-who="D">Reset David</button>
@@ -715,7 +736,7 @@
 
 /* ---------- packing data ---------- */
 var GROUPS=[
-  {h:'Layers & clothing',items:[
+  {id:'layers',h:'Layers & clothing',items:[
     {id:'midlayer',t:'Insulating mid-layer',s:'fleece or light puffy'},
     {id:'shell',t:'Rain / wind shell'},
     {id:'pants',t:'Quick-dry pants + shorts'},
@@ -726,32 +747,32 @@ var GROUPS=[
     {id:'swim',t:'Swimsuit',s:'Carlon pool, Curry pool'},
     {id:'sleep',t:'Warm sleepwear'}
   ]},
-  {h:'Footwear',items:[
+  {id:'foot',h:'Footwear',items:[
     {id:'boots',t:'Hiking boots or trail runners'},
     {id:'campshoe',t:'Camp shoes / slip-ons'}
   ]},
-  {h:'Fishing morning · the 26th',note:'Echo supplies waders, boots, rod, license, and water. Travel light.',items:[
+  {id:'fish',h:'Fishing morning · the 26th',note:'Echo supplies waders, boots, rod, license, and water. Travel light.',items:[
     {id:'waiver',t:'Echo waiver completed',s:'before you arrive'},
     {id:'fishlayers',t:'Shed-able layers + sun cover'},
     {id:'drysocks',t:'Dry socks for after waders'}
   ]},
-  {h:'Sun · bug · health',items:[
+  {id:'health',h:'Sun · bug · health',items:[
     {id:'sun',t:'Sunblock + lip balm'},
     {id:'bug',t:'Insect repellent'},
     {id:'meds',t:'Personal prescriptions'},
     {id:'firstaid',t:'Small first aid kit'}
   ]},
-  {h:'Camp & bear country',items:[
+  {id:'camp',h:'Camp & bear country',items:[
     {id:'headlamp',t:'Headlamp',s:'each, for dark tents and early starts'},
     {id:'power',t:'Power bank + cables',s:'tents have no outlets'},
     {id:'daypack',t:'Daypack for the Valley'},
     {id:'camera',t:'Camera gear, spare batteries + cards',s:'JT on the lens'},
     {id:'bottle',t:'Reusable water bottle'}
   ]},
-  {h:'Food & water',note:'Meals are on property plus the Echo lunch. David: avocado and mango out.',items:[
+  {id:'food',h:'Food & water',note:'Meals are on property plus the Echo lunch. David: avocado and mango out.',items:[
     {id:'snacks',t:'Trail snacks',s:'clean-standard, for the hiking days'}
   ]},
-  {h:'Documents & day-of',items:[
+  {id:'docs',h:'Documents & day-of',items:[
     {id:'conf',t:'Email confirmations saved offline'},
     {id:'pass',t:'Park entrance ready',s:'$35 per vehicle'},
     {id:'charger',t:'Phone charger + car cable'}
@@ -759,12 +780,82 @@ var GROUPS=[
 ];
 var PEOPLE=[{k:'J',n:'Jeremy'},{k:'D',n:'David'},{k:'JT',n:'JT'}];
 var KEY='jt-yosemite-pack-v2';
+var CUSTOM_KEY='jt-yosemite-custom-v1';
+var REMOVED_KEY='jt-yosemite-removed-v1';
 
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
 function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
-var state=load();
+function loadCustom(){try{return JSON.parse(localStorage.getItem(CUSTOM_KEY))||{}}catch(e){return {}}}
+function saveCustom(){try{localStorage.setItem(CUSTOM_KEY,JSON.stringify(custom))}catch(e){}}
+function loadRemoved(){try{return JSON.parse(localStorage.getItem(REMOVED_KEY))||[]}catch(e){return []}}
+function saveRemoved(){try{localStorage.setItem(REMOVED_KEY,JSON.stringify(removed))}catch(e){}}
 
-var totalItems=GROUPS.reduce(function(a,g){return a+g.items.length},0);
+var state=load();
+var custom=loadCustom();    /* {groupId:[{id,t,s}]} */
+var removed=loadRemoved();  /* [defaultItemId] */
+var editMode=false;
+
+function itemsFor(g){
+  var base=g.items.filter(function(it){return removed.indexOf(it.id)<0});
+  return base.concat(custom[g.id]||[]);
+}
+function allItems(){
+  var arr=[];GROUPS.forEach(function(g){itemsFor(g).forEach(function(it){arr.push(it)})});return arr;
+}
+function totalCount(){return allItems().length;}
+
+function mkBoxes(it){
+  var cols=document.createElement('div');cols.className='cols';
+  PEOPLE.forEach(function(p){
+    var cb=document.createElement('input');
+    cb.type='checkbox';cb.className='box';
+    cb.setAttribute('aria-label',p.n+': '+it.t);
+    cb.checked=!!(state[it.id]&&state[it.id][p.k]);
+    cb.addEventListener('change',function(){
+      if(!state[it.id])state[it.id]={};
+      state[it.id][p.k]=cb.checked;save(state);renderProgress();flashSaved();
+    });
+    cols.appendChild(cb);
+  });
+  return cols;
+}
+function mkRow(it,g,isCustom){
+  var row=document.createElement('div');row.className='prow'+(editMode?' editing':'');
+  var lab=document.createElement('div');lab.className='item';
+  lab.innerHTML=(isCustom?'<span class="cflag">added</span>':'')+it.t+(it.s?('<small>'+it.s+'</small>'):'');
+  row.appendChild(lab);
+  if(editMode){
+    var del=document.createElement('button');del.className='del';del.type='button';
+    del.setAttribute('aria-label','Remove '+it.t);del.innerHTML='&times;';
+    del.addEventListener('click',function(){
+      if(isCustom){custom[g.id]=(custom[g.id]||[]).filter(function(x){return x.id!==it.id});saveCustom();}
+      else{if(removed.indexOf(it.id)<0){removed.push(it.id);saveRemoved();}}
+      if(state[it.id]){delete state[it.id];save(state);}
+      buildList();renderProgress();flashSaved();
+    });
+    row.appendChild(del);
+  }
+  row.appendChild(mkBoxes(it));
+  return row;
+}
+function mkAddRow(g){
+  var box=document.createElement('div');box.className='addrow';box.setAttribute('data-add',g.id);
+  box.innerHTML='<input type="text" class="add-txt" placeholder="Add an item..." aria-label="New item for '+g.h+'">'
+    +'<input type="text" class="add-note" placeholder="Note (optional)" aria-label="Optional note">'
+    +'<button type="button" class="add-go">Add</button>';
+  var txt=box.querySelector('.add-txt'),note=box.querySelector('.add-note'),go=box.querySelector('.add-go');
+  function add(){
+    var t=txt.value.trim();if(!t){txt.focus();return;}
+    var it={id:'c_'+g.id+'_'+Date.now()+'_'+Math.floor(Math.random()*1000),t:t,s:note.value.trim()||null};
+    if(!custom[g.id])custom[g.id]=[];custom[g.id].push(it);saveCustom();
+    buildList();renderProgress();flashSaved();
+    var sel=document.querySelector('[data-add="'+g.id+'"] .add-txt');if(sel)sel.focus();
+  }
+  go.addEventListener('click',add);
+  txt.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add();}});
+  note.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add();}});
+  return box;
+}
 
 function buildList(){
   var root=document.getElementById('packlist');
@@ -773,42 +864,26 @@ function buildList(){
     var sec=document.createElement('div');sec.className='pgroup';
     var h=document.createElement('div');h.className='pgroup-h';h.textContent=g.h;sec.appendChild(h);
     if(g.note){var nt=document.createElement('div');nt.className='pgroup-note';nt.textContent=g.note;sec.appendChild(nt)}
-    g.items.forEach(function(it){
-      var row=document.createElement('div');row.className='prow';
-      var lab=document.createElement('div');lab.className='item';
-      lab.innerHTML=it.t+(it.s?('<small>'+it.s+'</small>'):'');
-      row.appendChild(lab);
-      var cols=document.createElement('div');cols.className='cols';
-      PEOPLE.forEach(function(p){
-        var cb=document.createElement('input');
-        cb.type='checkbox';cb.className='box';
-        cb.setAttribute('aria-label',p.n+': '+it.t);
-        cb.checked=!!(state[it.id]&&state[it.id][p.k]);
-        cb.addEventListener('change',function(){
-          if(!state[it.id])state[it.id]={};
-          state[it.id][p.k]=cb.checked;save(state);renderProgress();flashSaved();
-        });
-        cols.appendChild(cb);
-      });
-      row.appendChild(cols);
-      sec.appendChild(row);
+    var cu=custom[g.id]||[];
+    itemsFor(g).forEach(function(it){
+      var isCustom=cu.some(function(x){return x.id===it.id});
+      sec.appendChild(mkRow(it,g,isCustom));
     });
+    if(editMode)sec.appendChild(mkAddRow(g));
     root.appendChild(sec);
   });
 }
 
 function countFor(k){
-  var n=0;GROUPS.forEach(function(g){g.items.forEach(function(it){
-    if(state[it.id]&&state[it.id][k])n++;
-  })});return n;
+  var n=0;allItems().forEach(function(it){if(state[it.id]&&state[it.id][k])n++});return n;
 }
 function renderProgress(){
-  var wrap=document.getElementById('progress');
-  wrap.innerHTML='';
+  var wrap=document.getElementById('progress');wrap.innerHTML='';
+  var tot=totalCount();
   PEOPLE.forEach(function(p){
-    var c=countFor(p.k);var pct=Math.round(c/totalItems*100);
-    var card=document.createElement('div');card.className='pcard'+(c===totalItems?' done':'');
-    card.innerHTML='<div class="who"><span class="nm">'+p.n+'</span><span class="ct">'+c+' / '+totalItems+(c===totalItems?' · packed':'')+'</span></div><div class="meter"><span style="width:'+pct+'%"></span></div>';
+    var c=countFor(p.k);var pct=tot?Math.round(c/tot*100):0;var done=tot&&c===tot;
+    var card=document.createElement('div');card.className='pcard'+(done?' done':'');
+    card.innerHTML='<div class="who"><span class="nm">'+p.n+'</span><span class="ct">'+c+' / '+tot+(done?' · packed':'')+'</span></div><div class="meter"><span style="width:'+pct+'%"></span></div>';
     wrap.appendChild(card);
   });
 }
@@ -816,17 +891,36 @@ var flashT;
 function flashSaved(){
   var el=document.getElementById('savedNote');if(!el)return;
   el.textContent='Saved.';clearTimeout(flashT);
-  flashT=setTimeout(function(){el.textContent='Saved on this device.'},1200);
+  flashT=setTimeout(function(){el.textContent=editMode?'Edit mode: add or remove items.':'Saved on this device.'},1200);
 }
 
-document.querySelectorAll('button.reset').forEach(function(b){
+var editBtn=document.getElementById('editBtn'),restoreBtn=document.getElementById('restoreBtn');
+if(editBtn){
+  editBtn.addEventListener('click',function(){
+    editMode=!editMode;
+    editBtn.textContent=editMode?'Done editing':'Edit list';
+    editBtn.classList.toggle('on',editMode);
+    if(restoreBtn)restoreBtn.style.display=editMode?'':'none';
+    var note=document.getElementById('savedNote');if(note)note.textContent=editMode?'Edit mode: add or remove items.':'Saved on this device.';
+    buildList();
+  });
+}
+if(restoreBtn){
+  restoreBtn.addEventListener('click',function(){
+    if(!confirm('Restore the original list? Items you added are removed and anything you deleted comes back. Checkmarks stay.'))return;
+    custom={};removed=[];saveCustom();saveRemoved();
+    buildList();renderProgress();flashSaved();
+  });
+}
+
+document.querySelectorAll('button.reset[data-who]').forEach(function(b){
   b.addEventListener('click',function(){
     var who=b.getAttribute('data-who');
     var msg=who==='ALL'?'Clear every box for all three packers?':'Clear all boxes for '+({J:'Jeremy',D:'David',JT:'JT'}[who])+'?';
     if(!confirm(msg))return;
     if(who==='ALL'){state={};}
     else{Object.keys(state).forEach(function(id){if(state[id])delete state[id][who]})}
-    save(state);buildList();renderProgress();flashSaved();
+    save(state);renderProgress();buildList();flashSaved();
   });
 });
 
