@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#23261F">
+<title>JT Yosemite · June 25–27, 2026</title>
+<meta name="description" content="Field dossier for three days in Yosemite: itinerary, five trails, and a shared packing checklist. Jeremy, David, and JT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --granite:#23261F;
+    --granite-2:#2A2E25;
+    --stone:#33382E;
+    --stone-2:#3D4337;
+    --line:rgba(236,231,219,.12);
+    --line-strong:rgba(236,231,219,.22);
+    --pine:#5E7355;
+    --river:#6BA0A0;
+    --river-deep:#3F6E6E;
+    --rust:#834112;
+    --rust-bright:#B5601E;
+    --paper:#ECE7DB;
+    --paper-dim:#A8A496;
+    --snow:#F5F3ED;
+    --display:'Oswald',system-ui,sans-serif;
+    --body:'Spectral',Georgia,serif;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--granite);color:var(--paper);
+    font-family:var(--body);font-weight:400;line-height:1.62;
+    font-size:17px;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--rust);color:var(--snow)}
+  a{color:var(--river);text-decoration:none}
+  a:hover{color:var(--snow)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .eyebrow{
+    font-family:var(--display);font-weight:500;text-transform:uppercase;
+    letter-spacing:.28em;font-size:12px;color:var(--rust-bright);
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.02;margin:0}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-contour{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5}
+  .hero-contour path{fill:none;stroke:var(--pine);stroke-width:1;opacity:.5}
+  .hero-glow{position:absolute;left:0;right:0;top:-30%;height:90%;z-index:0;
+    background:radial-gradient(60% 70% at 70% 30%, rgba(181,96,30,.20), transparent 70%);}
+  .hero-inner{position:relative;z-index:2;padding:78px 24px 64px}
+  .hero-inner .wrap{padding:0}
+  .hero h1{
+    font-size:clamp(58px,15vw,148px);font-weight:700;letter-spacing:-.01em;
+    text-transform:uppercase;margin:18px 0 8px;color:var(--snow);
+  }
+  .hero h1 .amp{color:var(--rust-bright)}
+  .hero-dates{font-family:var(--display);font-weight:400;letter-spacing:.16em;
+    text-transform:uppercase;font-size:clamp(13px,2.4vw,17px);color:var(--paper-dim)}
+  .crew{display:flex;flex-wrap:wrap;gap:0 14px;align-items:baseline;margin-top:6px;
+    font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.14em;
+    font-size:clamp(15px,3vw,22px);color:var(--paper)}
+  .crew .dot{color:var(--rust-bright)}
+  .thesis{max-width:46ch;margin:26px 0 0;font-size:clamp(17px,2.6vw,21px);color:var(--paper)}
+  .thesis em{color:var(--river);font-style:italic}
+
+  .sleeps{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+  .sleep{flex:1 1 240px;background:rgba(51,56,46,.6);border:1px solid var(--line);
+    border-left:3px solid var(--river-deep);padding:14px 18px;border-radius:3px;backdrop-filter:blur(2px)}
+  .sleep .n{font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;
+    font-size:11px;color:var(--paper-dim)}
+  .sleep .p{font-family:var(--display);font-weight:600;font-size:21px;color:var(--snow);margin-top:3px}
+  .sleep .d{font-size:14px;color:var(--paper-dim)}
+
+  /* ---------- STICKY NAV ---------- */
+  nav.bar{position:sticky;top:0;z-index:40;background:rgba(35,38,31,.86);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav.bar .wrap{display:flex;gap:6px;align-items:center;padding-top:9px;padding-bottom:9px;
+    overflow-x:auto;scrollbar-width:none}
+  nav.bar .wrap::-webkit-scrollbar{display:none}
+  nav.bar .brand{font-family:var(--display);font-weight:700;text-transform:uppercase;
+    letter-spacing:.14em;font-size:14px;color:var(--snow);margin-right:8px;white-space:nowrap}
+  nav.bar a{font-family:var(--display);font-weight:500;text-transform:uppercase;
+    letter-spacing:.1em;font-size:12.5px;color:var(--paper-dim);padding:6px 11px;border-radius:20px;white-space:nowrap}
+  nav.bar a:hover{color:var(--snow);background:rgba(236,231,219,.07)}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:64px 0;border-bottom:1px solid var(--line);position:relative}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+  .sec-head h2{font-size:clamp(30px,6vw,46px);text-transform:uppercase;color:var(--snow)}
+  .sec-head .lead{max-width:42ch;color:var(--paper-dim);font-size:15.5px;margin-top:8px}
+  .divider-contour{display:block;width:100%;height:26px;opacity:.4;margin-bottom:6px}
+  .divider-contour path{fill:none;stroke:var(--line-strong);stroke-width:1}
+
+  /* ---------- ITINERARY ---------- */
+  .day{display:grid;grid-template-columns:160px 1fr;gap:28px;padding:26px 0;border-top:1px solid var(--line)}
+  .day:first-of-type{border-top:none}
+  .day-tag{position:relative}
+  .day-tag .num{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--rust-bright)}
+  .day-tag .date{font-family:var(--display);font-weight:600;font-size:26px;color:var(--snow);line-height:1.04;margin-top:6px}
+  .day-tag .sub{font-style:italic;color:var(--paper-dim);font-size:15px;margin-top:4px}
+  .stops{list-style:none;margin:0;padding:0}
+  .stop{position:relative;padding:0 0 18px 26px;border-left:1px solid var(--line);margin-left:4px}
+  .stop:last-child{padding-bottom:0}
+  .stop::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;
+    background:var(--granite);border:2px solid var(--river)}
+  .stop.water::before{border-color:var(--river);background:var(--river)}
+  .stop.fish::before{border-color:var(--rust-bright);background:var(--rust)}
+  .stop.optional::before{border-color:var(--pine);background:var(--granite)}
+  .stop .t{font-family:var(--display);font-weight:600;font-size:18px;color:var(--snow);text-transform:uppercase;letter-spacing:.03em}
+  .stop .b{color:var(--paper);font-size:15.5px;margin-top:2px}
+  .stop .b .muted{color:var(--paper-dim)}
+  .pill{display:inline-block;font-family:var(--display);font-weight:500;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.14em;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+  .pill.soft{background:rgba(181,96,30,.16);color:var(--rust-bright);border:1px solid rgba(181,96,30,.4)}
+  .pill.opt{background:rgba(94,115,85,.18);color:#9DB593;border:1px solid rgba(94,115,85,.5)}
+  .pill.note{background:rgba(107,160,160,.14);color:var(--river);border:1px solid rgba(107,160,160,.4)}
+
+  /* ---------- TRAILS ---------- */
+  .trails{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .trail{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:20px 20px 18px;
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;position:relative;overflow:hidden}
+  .trail:hover{transform:translateY(-3px);border-color:var(--line-strong);background:var(--stone)}
+  .trail .tnum{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--rust-bright)}
+  .trail h3{font-size:24px;color:var(--snow);text-transform:uppercase;margin:7px 0 2px;line-height:1.02}
+  .trail .when{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.12em;
+    font-size:11px;color:var(--river)}
+  .trail .pay{font-size:15px;color:var(--paper);margin:12px 0 14px}
+  .stats{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);padding-top:12px}
+  .stat{flex:1 1 33%;min-width:80px}
+  .stat .k{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--paper-dim)}
+  .stat .v{font-family:var(--display);font-weight:600;font-size:16px;color:var(--snow)}
+  .trail .go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--display);
+    font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--river)}
+  .trail .go:hover{color:var(--snow)}
+  .trail.is-opt{border-style:dashed;border-color:rgba(94,115,85,.4)}
+
+  /* ---------- ECHO ---------- */
+  .echo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .echo-card{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:22px}
+  .echo-card.provide{border-left:3px solid var(--river)}
+  .echo-card.bring{border-left:3px solid var(--rust)}
+  .echo-card h3{font-size:18px;text-transform:uppercase;letter-spacing:.04em;color:var(--snow);margin-bottom:4px}
+  .echo-card .cap{font-size:13px;color:var(--paper-dim);margin-bottom:14px}
+  .echo-list{list-style:none;margin:0;padding:0}
+  .echo-list li{padding:6px 0 6px 24px;position:relative;font-size:15px;border-bottom:1px solid var(--line)}
+  .echo-list li:last-child{border-bottom:none}
+  .echo-list li::before{position:absolute;left:0;top:6px;font-family:var(--display);font-weight:700;font-size:14px}
+  .echo-card.provide .echo-list li::before{content:"+";color:var(--river)}
+  .echo-card.bring .echo-list li::before{content:"›";color:var(--rust-bright)}
+  .echo-actions{margin-top:16px;background:rgba(181,96,30,.1);border:1px solid rgba(181,96,30,.3);
+    border-radius:4px;padding:14px 16px;grid-column:1/-1}
+  .echo-actions .t{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    font-size:13px;color:var(--rust-bright);margin-bottom:6px}
+  .echo-actions ul{margin:0;padding-left:18px}
+  .echo-actions li{font-size:14.5px;margin:4px 0}
+
+  /* ---------- PACKING ---------- */
+  .crew-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .pcard{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+  .pcard .who{display:flex;justify-content:space-between;align-items:baseline}
+  .pcard .who .nm{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:15px;color:var(--snow)}
+  .pcard .who .ct{font-family:var(--display);font-weight:400;font-size:13px;color:var(--paper-dim)}
+  .meter{height:7px;background:rgba(236,231,219,.1);border-radius:6px;margin-top:9px;overflow:hidden}
+  .meter span{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--river-deep),var(--river));transition:width .35s ease}
+  .pcard.done .meter span{background:linear-gradient(90deg,var(--pine),#86A878)}
+
+  .pack-head{position:sticky;top:46px;z-index:30;background:rgba(35,38,31,.94);backdrop-filter:blur(8px);
+    display:grid;grid-template-columns:1fr 132px;align-items:center;gap:10px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:4px 4px 0 0;border-bottom:none}
+  .pack-head .lbl{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--paper-dim)}
+  .cols{display:grid;grid-template-columns:repeat(3,40px);gap:6px;justify-content:end}
+  .cols .c{text-align:center;font-family:var(--display);font-weight:600;font-size:12px;color:var(--paper-dim);text-transform:uppercase}
+
+  .pgroup{background:var(--granite-2);border:1px solid var(--line);border-top:none}
+  .pgroup:last-of-type{border-radius:0 0 4px 4px}
+  .pgroup-h{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+    font-size:12px;color:var(--rust-bright);padding:13px 14px 7px;border-top:1px solid var(--line)}
+  .pgroup:first-of-type .pgroup-h{border-top:none}
+  .pgroup-note{font-family:var(--body);font-style:italic;text-transform:none;letter-spacing:0;color:var(--paper-dim);font-size:13px;padding:0 14px 8px}
+  .prow{display:grid;grid-template-columns:1fr 132px;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid var(--line)}
+  .prow .item{font-size:15px;color:var(--paper)}
+  .prow .item small{display:block;color:var(--paper-dim);font-size:12.5px}
+  .prow:hover{background:rgba(236,231,219,.03)}
+
+  .box{appearance:none;-webkit-appearance:none;width:30px;height:30px;margin:0 auto;display:block;
+    border:1.5px solid var(--line-strong);border-radius:5px;background:transparent;cursor:pointer;position:relative;transition:all .15s ease}
+  .box:hover{border-color:var(--river)}
+  .box:checked{background:var(--river);border-color:var(--river)}
+  .box:checked::after{content:"";position:absolute;left:9px;top:4px;width:7px;height:14px;
+    border:solid var(--granite);border-width:0 3px 3px 0;transform:rotate(45deg)}
+  .box:focus-visible{outline:2px solid var(--rust-bright);outline-offset:2px}
+
+  .pack-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+  .pack-tools .saved{font-size:13px;color:var(--paper-dim);font-style:italic}
+  button.reset{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.1em;
+    font-size:11px;color:var(--paper-dim);background:transparent;border:1px solid var(--line-strong);
+    border-radius:20px;padding:6px 14px;cursor:pointer;transition:all .15s ease}
+  button.reset:hover{color:var(--snow);border-color:var(--rust-bright);background:rgba(181,96,30,.1)}
+
+  /* ---------- NOTES ---------- */
+  .notes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .note{background:var(--granite-2);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+  .note h3{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--snow);margin-bottom:6px}
+  .note p{font-size:14.5px;color:var(--paper);margin:0}
+  .note p .muted{color:var(--paper-dim)}
+
+  footer{padding:46px 0 70px;text-align:center}
+  footer .mark{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.2em;
+    font-size:13px;color:var(--paper-dim)}
+  footer .sub{font-style:italic;color:var(--paper-dim);font-size:14px;margin-top:6px}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:720px){
+    body{font-size:16px}
+    .day{grid-template-columns:1fr;gap:14px}
+    .trails{grid-template-columns:1fr}
+    .echo-grid{grid-template-columns:1fr}
+    .notes{grid-template-columns:1fr}
+    .crew-progress{grid-template-columns:1fr;gap:8px}
+    .pack-head{top:44px}
+    .pack-head,.prow{grid-template-columns:1fr 118px}
+    .cols{grid-template-columns:repeat(3,34px)}
+    .box{width:28px;height:28px}
+    .box:checked::after{left:8px;top:3px}
+    section{padding:48px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <svg class="hero-contour" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g id="contours"></g>
+  </svg>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="eyebrow">Field dossier · Yosemite National Park</div>
+      <h1>JT <span class="amp">/</span> Yosemite</h1>
+      <div class="hero-dates">Thursday, June 25 – Saturday, June 27, 2026</div>
+      <div class="crew">Jeremy <span class="dot">·</span> David <span class="dot">·</span> JT</div>
+      <p class="thesis">Three days up Highway 120 with two tents, a half day on the <em>water</em>, and five trails worth the drive. Tick your own boxes below. Meet you at the trailhead.</p>
+      <div class="sleeps">
+        <div class="sleep">
+          <div class="n">Night of the 25th</div>
+          <div class="p">Evergreen Lodge</div>
+          <div class="d">Family tent · dinner on property</div>
+        </div>
+        <div class="sleep">
+          <div class="n">Night of the 26th</div>
+          <div class="p">Curry Village</div>
+          <div class="d">Tent cabin · in the Valley</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav class="bar">
+  <div class="wrap">
+    <span class="brand">JT / Yosemite</span>
+    <a href="#days">Itinerary</a>
+    <a href="#trails">Trails</a>
+    <a href="#echo">Fishing</a>
+    <a href="#pack">Packing</a>
+    <a href="#notes">Notes</a>
+  </div>
+</nav>
+
+<!-- ================= ITINERARY ================= -->
+<section id="days">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">The plan</div>
+        <h2>Three days, two tents</h2>
+      </div>
+      <p class="lead">Up the mountain Thursday, on the water and into the Valley Friday, last light Saturday before the drive home.</p>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day reveal">
+      <div class="day-tag">
+        <div class="num">Day 01</div>
+        <div class="date">Thu<br>Jun 25</div>
+        <div class="sub">Up the mountain</div>
+      </div>
+      <ul class="stops">
+        <li class="stop">
+          <div class="t">Drive up &amp; settle in</div>
+          <div class="b">Highway 120 to Evergreen Lodge, just past the Big Oak Flat entrance. Check into the family tent and drop the gear.</div>
+        </li>
+        <li class="stop water">
+          <div class="t">Carlon Falls at golden hour <span class="pill note">Easy</span></div>
+          <div class="b">A quiet riverside walk to a swimming-hole waterfall, right off Evergreen Road. <span class="muted">About 3.5 miles round trip, gentle until a short rocky finish.</span></div>
+        </li>
+        <li class="stop">
+          <div class="t">Dinner on property</div>
+          <div class="b">Eat at the lodge. <span class="muted">Heads up on David: avocado and mango out.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day reveal">
+      <div class="day-tag">
+        <div class="num">Day 02</div>
+        <div class="date">Fri<br>Jun 26</div>
+        <div class="sub">Water, then the Valley</div>
+      </div>
+      <ul class="stops">
+        <li class="stop fish">
+          <div class="t">Fly fishing half day with Echo <span class="pill soft">Timing TBC</span></div>
+          <div class="b">Private guided half day on the water for the three of you. <span class="muted">Pickup point and start time being finalized with Echo, so treat the morning as flexible until that lands.</span></div>
+        </li>
+        <li class="stop">
+          <div class="t">Echo hiker's lunches</div>
+          <div class="b">Lunches ordered through Echo for after you come off the water. <span class="muted">Flag David's avocado and mango allergy when confirming.</span></div>
+        </li>
+        <li class="stop water">
+          <div class="t">Roll into Yosemite Valley</div>
+          <div class="b">Drive from the Hetch Hetchy side down into the Valley for the afternoon. Park once and use the free Valley shuttle.</div>
+        </li>
+        <li class="stop">
+          <div class="t">Mist Trail to Vernal Fall <span class="pill note">Moderate</span></div>
+          <div class="b">Launches from Happy Isles near Curry. The granite staircase with peak-flow spray. Footbridge for a short out-and-back, or push to the top of Vernal. <span class="muted">You will get wet. That is the point.</span></div>
+        </li>
+        <li class="stop">
+          <div class="t">Curry Village tent cabin</div>
+          <div class="b">Check in for the night in the Valley. <span class="muted">Unheated canvas, so layers earn their place.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day reveal">
+      <div class="day-tag">
+        <div class="num">Day 03</div>
+        <div class="date">Sat<br>Jun 27</div>
+        <div class="sub">Last morning, no rush</div>
+      </div>
+      <ul class="stops">
+        <li class="stop water">
+          <div class="t">Mirror Lake, slow start <span class="pill note">Easy</span></div>
+          <div class="b">Gentle walk from the Curry side to Half Dome reflections. A calm last morning before the road.</div>
+        </li>
+        <li class="stop optional">
+          <div class="t">Sentinel Dome + Taft Point <span class="pill opt">Optional</span></div>
+          <div class="b">If the group wants one big-view payoff, detour up Glacier Point Road. 360-degree domes and the Taft fissures. <span class="muted">Adds a couple of hours since it runs south, away from the exit.</span></div>
+        </li>
+        <li class="stop">
+          <div class="t">Head home, around 2pm</div>
+          <div class="b">Departure is flexible, so the Sentinel Dome detour is genuinely on the table. <span class="muted">Lunch in Groveland on the way out is an easy add.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRAILS ================= -->
+<section id="trails">
+  <div class="wrap">
+    <svg class="divider-contour" viewBox="0 0 1000 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,13 C120,2 200,24 320,13 C440,2 520,24 640,13 C760,2 840,24 1000,13"/></svg>
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Boots on the ground</div>
+        <h2>Five trails</h2>
+      </div>
+      <p class="lead">Mapped to the days, not just ranked. Conditions current for late June: waterfalls still running hard, Glacier Point Road open for the season.</p>
+    </div>
+
+    <div class="trails">
+      <article class="trail reveal">
+        <div class="tnum">01</div>
+        <div class="when">Day 1 · Evergreen side</div>
+        <h3>Carlon Falls</h3>
+        <p class="pay">River walk just outside the gate to a 20-foot falls and a swimming hole. Most Valley visitors never find this side of the park.</p>
+        <div class="stats">
+          <div class="stat"><div class="k">Distance</div><div class="v">~3.5 mi</div></div>
+          <div class="stat"><div class="k">Gain</div><div class="v">~300 ft</div></div>
+          <div class="stat"><div class="k">Effort</div><div class="v">Easy+</div></div>
+        </div>
+        <a class="go" href="https://www.alltrails.com/trail/us/california/carlon-falls-trail" target="_blank" rel="noopener">Open in AllTrails ›</a>
+      </article>
+
+      <article class="trail reveal">
+        <div class="tnum">02</div>
+        <div class="when">Day 2 · From Happy Isles</div>
+        <h3>Mist Trail · Vernal Fall</h3>
+        <p class="pay">The iconic soaked-by-spray granite staircase along the Merced. Footbridge for a taste, top of Vernal for the full climb, Nevada for the ambitious.</p>
+        <div class="stats">
+          <div class="stat"><div class="k">Distance</div><div class="v">1.6–3 mi</div></div>
+          <div class="stat"><div class="k">Gain</div><div class="v">up to 1,000 ft</div></div>
+          <div class="stat"><div class="k">Effort</div><div class="v">Moderate</div></div>
+        </div>
+        <a class="go" href="https://www.alltrails.com/parks/us/california/yosemite-national-park" target="_blank" rel="noopener">Open in AllTrails ›</a>
+      </article>
+
+      <article class="trail reveal">
+        <div class="tnum">03</div>
+        <div class="when">Day 2 or 3 · Valley floor</div>
+        <h3>Lower Yosemite Fall + Cook's Meadow</h3>
+        <p class="pay">A one-mile paved loop to the tallest falls in North America, plus the meadow with the postcard Half Dome view. Low effort, big payoff.</p>
+        <div class="stats">
+          <div class="stat"><div class="k">Distance</div><div class="v">~2 mi</div></div>
+          <div class="stat"><div class="k">Gain</div><div class="v">Minimal</div></div>
+          <div class="stat"><div class="k">Effort</div><div class="v">Easy</div></div>
+        </div>
+        <a class="go" href="https://www.nps.gov/places/lower-yosemite-fall-trail.htm" target="_blank" rel="noopener">Trail info ›</a>
+      </article>
+
+      <article class="trail reveal">
+        <div class="tnum">04</div>
+        <div class="when">Day 3 · From Curry</div>
+        <h3>Mirror Lake</h3>
+        <p class="pay">Gentle and flat to still water that mirrors Half Dome. Late June still holds the reflection. The right speed for the last morning.</p>
+        <div class="stats">
+          <div class="stat"><div class="k">Distance</div><div class="v">2–5 mi</div></div>
+          <div class="stat"><div class="k">Gain</div><div class="v">Minimal</div></div>
+          <div class="stat"><div class="k">Effort</div><div class="v">Easy</div></div>
+        </div>
+        <a class="go" href="https://www.nps.gov/places/mirror-lake-trail.htm" target="_blank" rel="noopener">Trail info ›</a>
+      </article>
+
+      <article class="trail reveal is-opt">
+        <div class="tnum">05</div>
+        <div class="when">Day 3 · Optional · Glacier Point Rd</div>
+        <h3>Sentinel Dome + Taft Point</h3>
+        <p class="pay">A loop to a 360-degree granite summit and the cliff-edge fissures, both on one trail. The big-view detour if the group has the energy and the clock.</p>
+        <div class="stats">
+          <div class="stat"><div class="k">Distance</div><div class="v">5.2 mi</div></div>
+          <div class="stat"><div class="k">Gain</div><div class="v">~1,100 ft</div></div>
+          <div class="stat"><div class="k">Effort</div><div class="v">Moderate</div></div>
+        </div>
+        <a class="go" href="https://www.alltrails.com/trail/us/california/sentinel-dome-and-taft-point-loop" target="_blank" rel="noopener">Open in AllTrails ›</a>
+      </article>
+
+      <article class="trail reveal" style="display:flex;flex-direction:column;justify-content:center;background:transparent;border-style:dashed">
+        <div class="tnum" style="color:var(--river)">Bonus</div>
+        <h3 style="font-size:20px">Want bigger?</h3>
+        <p class="pay" style="margin-bottom:0">Upper Yosemite Falls climbs roughly 3,000 feet for a top-of-the-Valley view. Strenuous, all-morning, only if the legs are asking for it.</p>
+        <a class="go" href="https://www.alltrails.com/trail/us/california/upper-yosemite-falls-trail" target="_blank" rel="noopener">Open in AllTrails ›</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECHO ================= -->
+<section id="echo">
+  <div class="wrap">
+    <svg class="divider-contour" viewBox="0 0 1000 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,13 C140,24 220,2 360,13 C500,24 560,2 700,13 C820,22 900,4 1000,13"/></svg>
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Friday on the water</div>
+        <h2>What Echo brings, what you bring</h2>
+      </div>
+      <p class="lead">A near-turnkey guided half day. Show up with clothes and sun protection, not a trunk full of gear.</p>
+    </div>
+
+    <div class="echo-grid reveal">
+      <div class="echo-card provide">
+        <h3>Echo provides</h3>
+        <div class="cap">All the technical gear for three anglers</div>
+        <ul class="echo-list">
+          <li>Private fly fishing guide</li>
+          <li>Transport from basecamp to the water and back</li>
+          <li>California fishing license, all three of you</li>
+          <li>Rod, reel, and flies</li>
+          <li>Boots and waders</li>
+          <li>Water plus a filter</li>
+          <li>Park entrance fee, if applicable</li>
+          <li>First aid and emergency gear</li>
+        </ul>
+      </div>
+      <div class="echo-card bring">
+        <h3>You bring</h3>
+        <div class="cap">Clothing and sun cover, nothing bulky</div>
+        <ul class="echo-list">
+          <li>Layers you can shed as it warms</li>
+          <li>Brimmed hat and sunglasses</li>
+          <li>Sunblock and insect repellent</li>
+          <li>Hiking boots or athletic shoes</li>
+          <li>A dry pair of socks for after waders</li>
+          <li>Camera or binoculars</li>
+        </ul>
+      </div>
+      <div class="echo-actions">
+        <div class="t">Two things to square away first</div>
+        <ul>
+          <li>Every angler completes the online registration and waiver before arrival.</li>
+          <li>Pickup point and start time are still being worked out with Echo, so keep Friday morning loose until that is confirmed.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PACKING ================= -->
+<section id="pack">
+  <div class="wrap">
+    <svg class="divider-contour" viewBox="0 0 1000 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0,13 C100,4 180,22 300,13 C420,4 500,22 620,13 C740,4 820,22 1000,13"/></svg>
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Everyone packs their own</div>
+        <h2>The checklist</h2>
+      </div>
+      <p class="lead">Three columns, three packers. Tick your own box. It saves on this device, so each phone keeps its own progress.</p>
+    </div>
+
+    <div class="crew-progress reveal" id="progress"></div>
+
+    <div class="pack-head">
+      <div class="lbl">Item</div>
+      <div class="cols"><div class="c">J</div><div class="c">D</div><div class="c">JT</div></div>
+    </div>
+    <div id="packlist"></div>
+
+    <div class="pack-tools">
+      <span class="saved" id="savedNote">Saved on this device.</span>
+      <button class="reset" data-who="J">Reset Jeremy</button>
+      <button class="reset" data-who="D">Reset David</button>
+      <button class="reset" data-who="JT">Reset JT</button>
+      <button class="reset" data-who="ALL">Reset all</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOTES ================= -->
+<section id="notes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Good to know</div>
+        <h2>Park notes</h2>
+      </div>
+    </div>
+    <div class="notes reveal">
+      <div class="note">
+        <h3>Getting in</h3>
+        <p>No timed-entry reservation needed in 2026. A standard $35 per vehicle entrance pass covers you. <span class="muted">Have it ready to keep the gate quick.</span></p>
+      </div>
+      <div class="note">
+        <h3>Cold tents</h3>
+        <p>Both nights are unheated canvas at elevation. Valley nights drop into the low 50s and Evergreen runs cooler. <span class="muted">Pack a real warm layer for sleeping.</span></p>
+      </div>
+      <div class="note">
+        <h3>Bear country</h3>
+        <p>Anything scented goes in the bear lockers at both properties. Nothing food-scented in the tent or visible in the car. <span class="muted">This is enforced, not optional.</span></p>
+      </div>
+      <div class="note">
+        <h3>Weather</h3>
+        <p>Mountain afternoons turn fast. Check the Yosemite Valley forecast the night before each day and pack the shell regardless. <span class="muted">Full booking details live in your email confirmations.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">JT / Yosemite · June 2026</div>
+    <div class="sub">Granite, river, and a half day on the water. See you out there.</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- hero contour generation ---------- */
+(function(){
+  var g=document.getElementById('contours');
+  if(!g) return;
+  var lines=9;
+  for(var i=0;i<lines;i++){
+    var y=60+i*58;
+    var amp=18+i*4;
+    var d='M-50,'+y;
+    for(var x=0;x<=1300;x+=130){
+      var yy=y+Math.sin((x/180)+(i*0.7))*amp;
+      d+=' L'+x+','+yy.toFixed(1);
+    }
+    var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',d);
+    p.style.stroke=(i%3===0)?'var(--river-deep)':'var(--pine)';
+    p.style.opacity=(0.25+ (i%3)*0.12).toFixed(2);
+    var len=1400;
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      p.style.strokeDasharray=len;
+      p.style.strokeDashoffset=len;
+      p.style.animation='draw 2.4s ease '+(i*0.12)+'s forwards';
+    }
+    g.appendChild(p);
+  }
+  var st=document.createElement('style');
+  st.textContent='@keyframes draw{to{stroke-dashoffset:0}}';
+  document.head.appendChild(st);
+})();
+
+/* ---------- packing data ---------- */
+var GROUPS=[
+  {h:'Layers & clothing',items:[
+    {id:'midlayer',t:'Insulating mid-layer',s:'fleece or light puffy'},
+    {id:'shell',t:'Rain / wind shell'},
+    {id:'pants',t:'Quick-dry pants + shorts'},
+    {id:'shirts',t:'Wicking shirts',s:'2–3, long and short sleeve'},
+    {id:'hat',t:'Brimmed hat + sunglasses'},
+    {id:'beanie',t:'Warm beanie',s:'for the cold tents'},
+    {id:'socks',t:'Socks',s:'extra, plus a dry pair for after waders'},
+    {id:'swim',t:'Swimsuit',s:'Carlon pool, Curry pool'},
+    {id:'sleep',t:'Warm sleepwear'}
+  ]},
+  {h:'Footwear',items:[
+    {id:'boots',t:'Hiking boots or trail runners'},
+    {id:'campshoe',t:'Camp shoes / slip-ons'}
+  ]},
+  {h:'Fishing morning · the 26th',note:'Echo supplies waders, boots, rod, license, and water. Travel light.',items:[
+    {id:'waiver',t:'Echo waiver completed',s:'before you arrive'},
+    {id:'fishlayers',t:'Shed-able layers + sun cover'},
+    {id:'drysocks',t:'Dry socks for after waders'}
+  ]},
+  {h:'Sun · bug · health',items:[
+    {id:'sun',t:'Sunblock + lip balm'},
+    {id:'bug',t:'Insect repellent'},
+    {id:'meds',t:'Personal prescriptions'},
+    {id:'firstaid',t:'Small first aid kit'}
+  ]},
+  {h:'Camp & bear country',items:[
+    {id:'headlamp',t:'Headlamp',s:'each, for dark tents and early starts'},
+    {id:'power',t:'Power bank + cables',s:'tents have no outlets'},
+    {id:'daypack',t:'Daypack for the Valley'},
+    {id:'bottle',t:'Reusable water bottle'}
+  ]},
+  {h:'Food & water',note:'Meals are on property plus the Echo lunch. David: avocado and mango out.',items:[
+    {id:'snacks',t:'Trail snacks',s:'clean-standard, for the hiking days'}
+  ]},
+  {h:'Documents & day-of',items:[
+    {id:'conf',t:'Email confirmations saved offline'},
+    {id:'pass',t:'Park entrance ready',s:'$35 per vehicle'},
+    {id:'charger',t:'Phone charger + car cable'}
+  ]}
+];
+var PEOPLE=[{k:'J',n:'Jeremy'},{k:'D',n:'David'},{k:'JT',n:'JT'}];
+var KEY='jt-yosemite-pack-v2';
+
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+var state=load();
+
+var totalItems=GROUPS.reduce(function(a,g){return a+g.items.length},0);
+
+function buildList(){
+  var root=document.getElementById('packlist');
+  root.innerHTML='';
+  GROUPS.forEach(function(g){
+    var sec=document.createElement('div');sec.className='pgroup';
+    var h=document.createElement('div');h.className='pgroup-h';h.textContent=g.h;sec.appendChild(h);
+    if(g.note){var nt=document.createElement('div');nt.className='pgroup-note';nt.textContent=g.note;sec.appendChild(nt)}
+    g.items.forEach(function(it){
+      var row=document.createElement('div');row.className='prow';
+      var lab=document.createElement('div');lab.className='item';
+      lab.innerHTML=it.t+(it.s?('<small>'+it.s+'</small>'):'');
+      row.appendChild(lab);
+      var cols=document.createElement('div');cols.className='cols';
+      PEOPLE.forEach(function(p){
+        var cb=document.createElement('input');
+        cb.type='checkbox';cb.className='box';
+        cb.setAttribute('aria-label',p.n+': '+it.t);
+        cb.checked=!!(state[it.id]&&state[it.id][p.k]);
+        cb.addEventListener('change',function(){
+          if(!state[it.id])state[it.id]={};
+          state[it.id][p.k]=cb.checked;save(state);renderProgress();flashSaved();
+        });
+        cols.appendChild(cb);
+      });
+      row.appendChild(cols);
+      sec.appendChild(row);
+    });
+    root.appendChild(sec);
+  });
+}
+
+function countFor(k){
+  var n=0;GROUPS.forEach(function(g){g.items.forEach(function(it){
+    if(state[it.id]&&state[it.id][k])n++;
+  })});return n;
+}
+function renderProgress(){
+  var wrap=document.getElementById('progress');
+  wrap.innerHTML='';
+  PEOPLE.forEach(function(p){
+    var c=countFor(p.k);var pct=Math.round(c/totalItems*100);
+    var card=document.createElement('div');card.className='pcard'+(c===totalItems?' done':'');
+    card.innerHTML='<div class="who"><span class="nm">'+p.n+'</span><span class="ct">'+c+' / '+totalItems+(c===totalItems?' · packed':'')+'</span></div><div class="meter"><span style="width:'+pct+'%"></span></div>';
+    wrap.appendChild(card);
+  });
+}
+var flashT;
+function flashSaved(){
+  var el=document.getElementById('savedNote');if(!el)return;
+  el.textContent='Saved.';clearTimeout(flashT);
+  flashT=setTimeout(function(){el.textContent='Saved on this device.'},1200);
+}
+
+document.querySelectorAll('button.reset').forEach(function(b){
+  b.addEventListener('click',function(){
+    var who=b.getAttribute('data-who');
+    var msg=who==='ALL'?'Clear every box for all three packers?':'Clear all boxes for '+({J:'Jeremy',D:'David',JT:'JT'}[who])+'?';
+    if(!confirm(msg))return;
+    if(who==='ALL'){state={};}
+    else{Object.keys(state).forEach(function(id){if(state[id])delete state[id][who]})}
+    save(state);buildList();renderProgress();flashSaved();
+  });
+});
+
+buildList();renderProgress();
+
+/* ---------- scroll reveal ---------- */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
